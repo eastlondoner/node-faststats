@@ -115,6 +115,22 @@ Stats.prototype = {
 		return b;
 	},
 
+	serialize: function() {
+		return JSON.stringify({
+			sum: this.sum,
+			sum_of_squares: this.sum_of_squares,
+			zeroes: this.zeroes,
+			sum_of_logs: this.sum_of_logs,
+			sum_of_square_of_logs: this.sum_of_square_of_logs,
+			length: this.length,
+			min: this.min,
+			max: this.max,
+			buckets: this.buckets,
+			_config: this._config,
+			data: this._config.store_data? this.data : null
+		});
+	},
+
 	_add_cache: function(a) {
 		var tuple=[1], i;
 		if(a instanceof Array) {
@@ -578,6 +594,21 @@ Stats.prototype = {
 Stats.prototype.σ=Stats.prototype.stddev;
 Stats.prototype.μ=Stats.prototype.amean;
 
+Stats.deserialize = function(data){
+	if(data instanceof String) {
+		data = JSON.parse(data)
+	}
+
+	var newStats = new Stats(data._config);
+
+	for(var k in data) {
+		if(k.indexOf('_') != 0) {
+			newStats[k] = data[k]
+		}
+	}
+
+	return newStats
+};
 
 exports.Stats = Stats;
 
