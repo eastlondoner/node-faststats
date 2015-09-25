@@ -595,7 +595,11 @@ Stats.prototype.σ=Stats.prototype.stddev;
 Stats.prototype.μ=Stats.prototype.amean;
 
 Stats.deserialize = function(data){
-	if(data instanceof String) {
+	if(data instanceof Stats){
+		return data;
+
+	}
+	if(data instanceof String || (data.constructor === String)) {
 		data = JSON.parse(data)
 	}
 
