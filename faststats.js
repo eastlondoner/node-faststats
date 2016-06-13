@@ -615,7 +615,7 @@ Stats.deserialize = function(data){
 };
 
 exports.Stats = Stats;
-
+/*
 if(process && process.argv[1] && process.argv[1].match(__filename)) {
 	var s = new Stats({store_data:false, buckets: [ 1, 5, 10, 15, 20, 25, 30, 35 ]}).push(1, 2, 3);
 	var l = process.argv.slice(2);
@@ -640,5 +640,5 @@ if(process && process.argv[1] && process.argv[1].match(__filename)) {
 	s.push_tuple([4, 1, 3, 3]);
 	console.log(s.amean(), s.median());
 	console.log(s.distribution());
-
 }
+*/
