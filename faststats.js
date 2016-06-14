@@ -132,7 +132,7 @@ Stats.prototype = {
 			length: this.length,
 			min: this.min,
 			max: this.max,
-			buckets: buckets
+			buckets: buckets,
 			_config: this._config,
 			data: this._config.store_data? this.data : null
 		});
