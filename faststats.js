@@ -116,6 +116,13 @@ Stats.prototype = {
 	},
 
 	serialize: function() {
+		
+		var buckets = this.buckets;
+		
+		if(buckets){
+			buckets = Object.keys(buckets).reduce(function(memo, k){ memo[k] = buckets[k]; return memo; }, {});
+		}
+		
 		return JSON.stringify({
 			sum: this.sum,
 			sum_of_squares: this.sum_of_squares,
@@ -125,7 +132,7 @@ Stats.prototype = {
 			length: this.length,
 			min: this.min,
 			max: this.max,
-			buckets: this.buckets,
+			buckets: buckets
 			_config: this._config,
 			data: this._config.store_data? this.data : null
 		});
@@ -602,7 +609,10 @@ Stats.deserialize = function(data){
 	if(data instanceof String || (data.constructor === String)) {
 		data = JSON.parse(data)
 	}
-
+	
+	if(data.buckets){
+		data.buckets =  data.buckets.reduce(function(memo, v, i){ memo[i] = v; return memo ;}, [])
+	}
 	var newStats = new Stats(data._config);
 
 	for(var k in data) {
