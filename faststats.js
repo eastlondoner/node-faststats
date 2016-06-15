@@ -611,7 +611,7 @@ Stats.deserialize = function(data){
 	}
 	
 	if(data.buckets){
-		data.buckets =  data.buckets.reduce(function(memo, v, i){ memo[i] = v; return memo ;}, [])
+		data.buckets =  Object.keys(data.buckets).reduce(function(memo, k){ memo[parseInt(k)] = data.buckets[k]; return memo ;}, [])
 	}
 	var newStats = new Stats(data._config);
 
