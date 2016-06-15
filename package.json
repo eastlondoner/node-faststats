@@ -1,6 +1,6 @@
 {
   "name": "fast-stats",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Quickly calculate common statistics on lists of numbers",
   "keywords": [
     "statistics",
